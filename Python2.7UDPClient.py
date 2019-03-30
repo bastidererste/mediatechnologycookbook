@@ -12,7 +12,7 @@ s.connect((IP,PORT))
 MESSAGE = "HELLO"
 s.send(MESSAGE)
 
-# send string without carriage return "\r" and "\n" newline
+# send string with carriage return "\r" and "\n" newline
 MESSAGE = "HELLO\r\n"
 s.send(MESSAGE)
 
