@@ -1,0 +1,2 @@
+//listen for udp messages on 127.0.0.1 with port 20000 
+nc -u -l 127.0.0.1 20000
