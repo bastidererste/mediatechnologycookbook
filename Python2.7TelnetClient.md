@@ -1,7 +1,7 @@
 
-### PYTHON 2.7
 import socket
 
+#
 IP = "127.0.0.1"
 PORT = 20000
 
