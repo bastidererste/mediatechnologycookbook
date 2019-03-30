@@ -1,0 +1,10 @@
+
+# send byte message from hex 
+echo -ne "\xFF\xFF\xFF\xFF\x30\x30\xFF\x43" | nc 127.0.0.1 20000
+
+# send string message with newline "\n"
+echo "HELLO" | nc 127.0.0.1 20000
+
+# send string message with carriage return \r\n
+echo -ne "HELLO\x0D\x0A" | nc 127.0.0.1 20000
+
