@@ -15,7 +15,7 @@ s.send(MESSAGE)
 MESSAGE = b'HELLO\r\n'
 s.send(MESSAGE)
 
-# send bytes from hex-string
+# send bytes from hex
 MESSAGE = b'\xFF\xFF\x0D\x0A'
 s.send(MESSAGE)
 
