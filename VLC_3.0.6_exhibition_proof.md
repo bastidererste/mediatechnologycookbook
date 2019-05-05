@@ -27,7 +27,7 @@ position video begins
 ## --video-y=50
 position video begins
 
-## --zoom=0.0
+## --zoom=0.5
 size of video in respect to aspect
 
 videofile.mp4
