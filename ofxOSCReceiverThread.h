@@ -23,8 +23,17 @@
         }
         
         void ofApp::receivedMessage(ofxOscMessage &m){
-        
-            ofLog(OF_LOG_NOTICE, "messagereceivedInEventNotify ");
+                ofLog(OF_LOG_NOTICE, "messagereceivedInEventNotify ");
+                
+                if ( m.getAddress() == "/adress" )
+                {
+
+                        int firstArgument = m.getArgAsInt32( 0 );
+                        ofLog(OF_LOG_NOTICE, "the movieIndex is " + ofToString(firstArgument));
+            
+                }
+                
+            
         }
 */
 
