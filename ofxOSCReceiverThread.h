@@ -23,18 +23,10 @@
             ofR.start();
             ofAddListener(ofR.messageReceived, this, &ofApp::receivedMessage);
         }
-        
-        void ofApp::receivedMessage(int &i){
-                ofLog(OF_LOG_NOTICE, "messagereceivedInEventNotify ");
-                
-                if ( m.getAddress() == "/adress" )
-                {
 
-                        int firstArgument = m.getArgAsInt32( 0 );
-                        ofLog(OF_LOG_NOTICE, "the movieIndex is " + ofToString(firstArgument));
-            
-                }
-                
+        //only if the integers we chose in ofxOSCReceiverThread.h arrive, this method will be fired
+        void ofApp::receivedMessage(int &i){
+                ofLog(OF_LOG_NOTICE, "messagereceivedInEventNotify " + ofToString( i ));      
             
         }
 */
