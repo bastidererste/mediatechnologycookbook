@@ -1,6 +1,8 @@
 
 /*
-
+        
+        this threaded OSC receiver will only notify with your app if somthing you decided happed. 
+        If theres a lot happennig on OSC, your main apps processing will not be interuppted unless you want it.
 
         Add this header file (ofxOSCReceiverThread.h) to src folder
         
@@ -9,7 +11,7 @@
         #include "ofxOSCReceiverThread.h"
 
         public:
-          void receivedMessage(ofxOscMessage &m);
+          void receivedMessage(int &i);
           ofxOSCReceiverThread ofR;
           
         
@@ -22,7 +24,7 @@
             ofAddListener(ofR.messageReceived, this, &ofApp::receivedMessage);
         }
         
-        void ofApp::receivedMessage(ofxOscMessage &m){
+        void ofApp::receivedMessage(int &i){
                 ofLog(OF_LOG_NOTICE, "messagereceivedInEventNotify ");
                 
                 if ( m.getAddress() == "/adress" )
@@ -77,9 +79,18 @@ public:
                     
                     if (receiver.getNextMessage(msg))
                     {
+                         
                         ofxOscMessage m = msg;
-                        ofNotifyEvent(messageReceived, m, this);
-                        ofLog(OF_LOG_NOTICE, "messagereceived ");
+
+                        if ( m.getAddress() == "/can" )
+                        {
+                            
+                            int i = m.getArgAsInt32( 0 );
+                            if(i==2){
+                                ofNotifyEvent(messageReceived, i, this);
+                                ofLog(OF_LOG_NOTICE, "messagereceived ");
+                            }
+                        }
                         
                     }
                     
@@ -91,7 +102,7 @@ public:
     
     
     
-    ofEvent<ofxOscMessage> messageReceived;
+    ofEvent<int> messageReceived;
     
 private:
     
