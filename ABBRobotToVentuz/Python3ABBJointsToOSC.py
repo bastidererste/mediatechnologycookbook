@@ -15,8 +15,8 @@ while True:
 	data = sock.recv(1024)
 	stringData = data.decode('utf-8').replace('>','')
 	x = np.array(stringData.split())
-	print(x)
-	osc_client.send_message("/robo", x)
+	#print(x)
+	osc_client.send_message("/robo", x.astype(np.float))
 
 
 sock.close()
