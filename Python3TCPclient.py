@@ -14,7 +14,7 @@ sock.connect(server_address)
 MESSAGE = b'hello'
 sock.sendall(MESSAGE)
 
-#send a string with carriage return \n and new line \n
+#send a string with carriage return \r and new line \n
 MESSAGE = b'hello\r\n'
 sock.sendall(MESSAGE)
 
