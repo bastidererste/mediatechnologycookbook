@@ -1,0 +1,23 @@
+C:\WINDOWS\system32>tasklist
+
+Abbildname                     PID Sitzungsname       Sitz.-Nr. Speichernutzung
+========================= ======== ================ =========== ===============
+System Idle Process              0 Services                   0             8 K
+System                           4 Services                   0         7.324 K
+Registry                       120 Services                   0        87.984 K
+smss.exe                       444 Services                   0           560 K
+csrss.exe                      632 Services                   0         2.728 K
+wininit.exe                    724 Services                   0         3.488 K
+services.exe                   796 Services                   0         7.852 K
+lsass.exe                      808 Services                   0        18.300 K
+svchost.exe                    936 Services                   0           760 K
+svchost.exe                   1008 Services                   0        25.152 K
+fontdrvhost.exe                 84 Services                   0           800 K
+WUDFHost.exe                   556 Services                   0         2.248 K
+svchost.exe                   1064 Services                   0        15.428 K
+...
+...
+...
+
+C:\WINDOWS\system32>taskkill /IM "Excel.exe" /F
+
