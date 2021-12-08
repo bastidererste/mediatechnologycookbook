@@ -16,10 +16,12 @@ An in-depth paragraph about your project and overview of use.
 * Describe any prerequisites, libraries, OS version, etc., needed before installing program.
 * ex. Windows 10
 
-### Installing
+### Contents
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+1. Lorem ipsum
+2. Lorem ipsum
+3. Lorem ipsum
+4. Lorem ipsum
 
 ### Executing program
 
