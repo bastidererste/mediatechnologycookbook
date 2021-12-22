@@ -6,6 +6,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ### Solution
 
+'''
 //fast scan for mashines on complete network 
 nmap -T4 -F 192.168.1.0/24
 
@@ -42,6 +43,26 @@ PORT     STATE SERVICE
 80/tcp   open  http
 8008/tcp open  http-alt
 8080/tcp open  http-alt
+
+
+
+//scan ports between 10-1000 on IP 192.168.1.44
+nmap -p 10-1000 192.168.1.44
+ 
+response:
+Connect Scan Timing: About 80.83% done; ETC: 16:59 (0:00:01 remaining)
+Nmap scan report for 192.168.1.44
+Host is up (0.00094s latency).
+Not shown: 987 filtered ports
+PORT    STATE SERVICE
+22/tcp  open  ssh
+23/tcp  open  telnet
+80/tcp  open  http
+111/tcp open  sunrpc
+''' 
+
+ 
+ 
 ...
 
 ### Discussion
