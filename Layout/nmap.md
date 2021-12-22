@@ -6,7 +6,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ### Solution
 
-```t
+```text
 //fast scan for mashines on complete network 
 nmap -T4 -F 192.168.1.0/24
 
