@@ -6,7 +6,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ### Solution
 
-'''
+```t
 //fast scan for mashines on complete network 
 nmap -T4 -F 192.168.1.0/24
 
@@ -59,11 +59,8 @@ PORT    STATE SERVICE
 23/tcp  open  telnet
 80/tcp  open  http
 111/tcp open  sunrpc
-''' 
+```
 
- 
- 
-...
 
 ### Discussion
 
