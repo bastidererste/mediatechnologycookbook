@@ -2,29 +2,34 @@
 
 ### Problem
 
-When I was on a car reveal project in China for a large german car manufacturer, we had a large moving LED screen. To reveal the car, this LED screen would split in the middle and open up like elevator doors. The content on the LED screen however should stay fixed to its position. 
+When I was on a car reveal project in China for a large german car manufacturer, we had a large moving LED screen. To reveal the car, this LED screen would split in the middle and open up like elevator doors. The content on the LED screen however should stay fixed to its position on the stage. 
 
-The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "poition" what so ever. They simply forgott.The plc was locked up by the programmer. 
+The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "poition" what so ever. They simply forgott. The plc was locked up by the programmer, so simply adding a new funtion was not an option.
+
+### Solution
 
 By taking a closer look at the setup i found modbus tcp interfaces at the motors attached to the LED screen. 
 
 Modbus is an industrial protocol standard that was created for communication between plcs. Modbus TCP takes Modbus data packets and transmitts them over standard Ethernet networks.
 
-Modbus data is most often read and written as "registers" which are 16-bit pieces of data. 
+Modbus data is most often read and written as "registers" which are 16-bit pieces of data. Here for example is the holding register that starts at address 40001.
 
 | Address  | 0  | 1  | 2  |  3 | 4  |  5 | 6  |7   |8   |9   |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 40001-40010  | 32767  | 0 | 0  | 0  | 0  | 0  |  0 |0   |0   |0   |
+| 40001-40010  | 0  | 0 | 21145  | 123  | 0  | 0  |  0 |0   |0   |0   |
 | 40011-40020  | 0  | 0  | 0  |   0| 0  | 0  | 0  |0   | 0  |0   |
 | 40021-40030  |  0 | 0  | 0  | 0 |0  |0   | 0  | 0  | 0  | 0  |
 
-Most often, the register is either a signed or unsigned 16-bit integer. If a 32-bit integer or floating point is required, these values are actually read as a pair of registers. The most commonly used register is called a Holding Register, and these can be read or written. The other possible type is Input Register, which is read-only.
+The register is either a signed or unsigned 16-bit integer. If you expect a 32-bit integer you read two registers.
+
+I had a look at the documentation of the modbus motor controller and saw that the incremental counter for the position can be read from address 
 
 The wide data simply consists of two consecutive "registers" treated as a single wide register. Floating point in 32-bit IEEE 754 standard, and 32-bit integer data, are widely used.
 
 Most Control Solutions Modbus products default to placing the high order register first, or in the lower numbered register. This is known as "big endian", and is consistent with Modbus protocol which is by definition big endian itself. The byte order for all 16-bit values is most significant byte first.
 
-### Solution
+
+
 ```py
 from pyModbusTCP.client import ModbusClient
 from pythonosc import udp_client
