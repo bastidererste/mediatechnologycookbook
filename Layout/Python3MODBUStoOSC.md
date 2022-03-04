@@ -2,7 +2,7 @@ When I was on a car reveal project in China for a german car manufacturer, we ha
 
 ### Problem
 
-The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "position" what so ever. They simply forgott. The plc was locked up by the programmer, so just adding a new funtion was not an option.
+The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "position" what so ever. They simply forgot. The plc was locked up by the programmer, so adding a new function was not an option.
 
 ### Solution
 
@@ -24,6 +24,14 @@ I had a look at the documentation of the modbus motor controller and saw that th
 
 The documentation also states that the registers are big-endian, so the higher the byte the lower the address.
 
+
+
+:warning: WARNING
+
+> Programming on moving equipment large or small can be very dangerous to you and the crew around. Take care of savety precautions. Reading holding registers can be considered save, but nevertheless take care nobody is in the moving equipments direct vicinity while debugging 
+
+
+
 I connected my machine to the LED screens network, fired up pyCharm, created a new project and installed pyModbusTCP through the package manager.
 
 ```python
@@ -33,19 +41,19 @@ from pyModbusTCP.client import ModbusClient
 To connect to the modbus controller we need its ip. The port is almost allways 502. There are exceptions, however... With this info i created a client.
 
 ```python
-c = ModbusClient(host="192.168.178.223", port=502, auto_open=True)
+modbus_client = ModbusClient(host="192.168.178.223", port=502, auto_open=True)
 ```
 
 As holding register allwas start at 40001 (or in very rare cases at 40000), read_holding_registers() omits this large numbers and only takes in the beginnig index and how many registers to read including the start register. In my case thats 2 and 2. From 40003 (the first) to 40004 (the second). Modbus registers are zero indexed, thats why the start address is NOT 3 but 2.
 
 ```python
-regs = c.read_holding_registers(2, 2)
+regs = modbus_client.read_holding_registers(2, 2)
 ```
 
 If the address to start reading would have been 40062 it would have been 61 and 2.
 
 ```python
-regs = c.read_holding_registers(61, 2)
+regs = modbus_client.read_holding_registers(61, 2)
 ```
 
 **regs** is now an array that holds the two 16bit integers that make up the recent position.
@@ -58,50 +66,78 @@ position = (regs[0] << 16) + regs[1]
 
 Voila, **position** now holds the position of the LED segment this controller is attached to.
 
-
-
-The complete code looks like this:
+The complete code so far looks like this:
 
 ```python
 from pyModbusTCP.client import ModbusClient
 
-c = ModbusClient(host="localhost", port=502, auto_open=True)
+modbus_client = ModbusClient(host="192.168.178.223", port=502, auto_open=True)
 
-regs = c.read_holding_registers(2, 2)
-if regs:
-    print(regs)
-    position = (regs[0] << 16) + regs[1]
-    print(position)
-else:
-    print("read error")
+regs = modbus_client.read_holding_registers(2, 2)
+while True:
+	if regs:
+    	position = (regs[0] << 16) + regs[1]
+    	print(position)
+	else:
+    	print("read error")
+```
+
+Now that i have the position, lets get it over to the LED content machine with OSC.
+
+I installed the python-osc package through the package manager and import it like i did with the ModBus library.
+
+```python
+from pythonosc import udp_client
+
+```
+
+The ventzu machines IP was 192.168.178.22 and listened on port 8000 for incoming OSC messages
+
+```python
+osc_client = udp_client.SimpleUDPClient("192.168.178.22", 8000)
+```
+
+Whenever a new position is read, i send an OSC message with the address "/modbus" to the content machine.
+
+```python
+while True:
+    regs = modbus_client.read_holding_registers(61, 2)
+    if regs:
+        position = (regs[0] << 16) + regs[1]
+        osc_client.send_message("/modbus", position)
+    else:
+        print("read error")
+        
+```
+
+The final code:
+
+```python
+from pyModbusTCP.client import ModbusClient
+from pythonosc import udp_client
+
+
+modbus_client = ModbusClient(host="192.168.178.223", port=502, auto_open=True)
+osc_client = udp_client.SimpleUDPClient("192.168.178.22", 8000)
+
+while True:
+    regs = modbus_client.read_holding_registers(61, 2)
+    if regs:
+        position = (regs[0] << 16) + regs[1]
+        osc_client.send_message("/modbus", position)
+    else:
+        print("read error")
+        
+        
 ```
 
 ### Discussion
-
-:warning: WARNING
-
-> Programming on moving equipment large or small can be very dangerous to you and the crew around. Take care of savety precautions. Reading holding registers can be considered save, but nevertheless take care nobody is in the moving equipments direct vicinity while debugging 
-
-
-### See also
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 
 
 
-```python
-from pyModbusTCP.client import ModbusClient
-from pythonosc import udp_client
+### See also
 
-modbus_client = ModbusClient(host="192.168.8.126", port=1502, auto_open=True)
-osc_client = udp_client.SimpleUDPClient("192.168.8.126", 11111)
-
-while(True):
-        regs = modbus_client.read_holding_registers(0, 2)
-        if regs:
-                osc_client.send_message("/modbus", regs)
-        else:
-                print("read error")
-
-```
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
