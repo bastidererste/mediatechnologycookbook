@@ -14,9 +14,9 @@ Modbus data is most often read and written as "registers" which are 16-bit piece
 
 | Address  | 0  | 1  | 2  |  3 | 4  |  5 | 6  |7   |8   |9   |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 40001-40010  |   |   |   |   |   |   |   |   |   |   |
-| 40011-40020  |   |   |   |   |   |   |   |   |   |   |
-| 40021-40030  |   |   |   |   |   |   |   |   |   |   |
+| 40001-40010  | 32767  | 0 | 0  | 0  | 0  | 0  |  0 |0   |0   |0   |
+| 40011-40020  | 0  | 0  | 0  |   0| 0  | 0  | 0  |0   | 0  |0   |
+| 40021-40030  |  0 | 0  | 0  | 0 |0  |0   | 0  | 0  | 0  | 0  |
 
 Most often, the register is either a signed or unsigned 16-bit integer. If a 32-bit integer or floating point is required, these values are actually read as a pair of registers. The most commonly used register is called a Holding Register, and these can be read or written. The other possible type is Input Register, which is read-only.
 
