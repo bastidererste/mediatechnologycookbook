@@ -55,7 +55,21 @@ As i kow from the documentation that two 16bit integers give the position as a 3
 position = (regs[0] << 16) + regs[1]
     
 ```
-Voila. 
+The complete code looks like this:
+
+```py
+from pyModbusTCP.client import ModbusClient
+
+c = ModbusClient(host="localhost", port=502, auto_open=True)
+
+regs = c.read_holding_registers(61, 2)
+if regs:
+    print(regs)
+    position = (regs[0] << 16) + regs[1]
+    print(position)
+else:
+    print("read error")
+```
 
 
 
@@ -76,7 +90,7 @@ while(True):
 ```
 ### Discussion
 
-:exclamation: Programming moving equipment large or small can be very dangerous to you and the crew around. Take care of savety precautions. Reading holding registers can be considered save, but whyle debugin take care nobofy is in the moving equipments direct vicinity!
+:exclamation: Programming on moving equipment large or small can be very dangerous to you and the crew around. Take care of savety precautions. Reading holding registers can be considered save, but nevertheless take care nobody is in the moving equipments direct vicinity whyle debugin :exclamation:
 
 
 ### See also
