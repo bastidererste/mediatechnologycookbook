@@ -1,10 +1,9 @@
 
+When I was on a car reveal project in China for a german car manufacturer, we had a large moving LED screen. To reveal the car, this LED screen would split in the middle and open up like elevator doors. The content on the LED screen however should stay fixed to its position on the stage. 
 
 ### Problem
 
-When I was on a car reveal project in China for a german car manufacturer, we had a large moving LED screen. To reveal the car, this LED screen would split in the middle and open up like elevator doors. The content on the LED screen however should stay fixed to its position on the stage. 
-
-The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "poition" what so ever. They simply forgott. The plc was locked up by the programmer, so simply adding a new funtion was not an option.
+The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "poition" what so ever. They simply forgott. The plc was locked up by the programmer, so just adding a new funtion was not an option.
 
 ### Solution
 
@@ -62,7 +61,7 @@ from pyModbusTCP.client import ModbusClient
 
 c = ModbusClient(host="localhost", port=502, auto_open=True)
 
-regs = c.read_holding_registers(61, 2)
+regs = c.read_holding_registers(2, 2)
 if regs:
     print(regs)
     position = (regs[0] << 16) + regs[1]
@@ -70,6 +69,17 @@ if regs:
 else:
     print("read error")
 ```
+
+
+### Discussion
+
+:exclamation: Programming on moving equipment large or small can be very dangerous to you and the crew around. Take care of savety precautions. Reading holding registers can be considered save, but nevertheless take care nobody is in the moving equipments direct vicinity whyle debuging :exclamation:
+
+
+### See also
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
 
 
 
@@ -88,11 +98,3 @@ while(True):
                 print("read error")
 
 ```
-### Discussion
-
-:exclamation: Programming on moving equipment large or small can be very dangerous to you and the crew around. Take care of savety precautions. Reading holding registers can be considered save, but nevertheless take care nobody is in the moving equipments direct vicinity whyle debugin :exclamation:
-
-
-### See also
-
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
