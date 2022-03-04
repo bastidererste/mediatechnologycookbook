@@ -2,7 +2,7 @@ When I was on a car reveal project in China for a german car manufacturer, we ha
 
 ### Problem
 
-The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "poition" what so ever. They simply forgott. The plc was locked up by the programmer, so just adding a new funtion was not an option.
+The hardware to controll the screen was a siemens programmable logic controller (plc). The controler had only the commands "open", "close" and "stop". There was no output for "position" what so ever. They simply forgott. The plc was locked up by the programmer, so just adding a new funtion was not an option.
 
 ### Solution
 
