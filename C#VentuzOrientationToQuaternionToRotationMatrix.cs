@@ -1,5 +1,5 @@
 
-public SlimDX.Matrix ToSlimDXMatrix(float x, float y, float z, floatw){
+public SlimDX.Matrix ToSlimDXMatrix(float x, float y, float z, float w){
 
   SlimDX.Quaternion q = new SlimDX.Quaternion();
 
