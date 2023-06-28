@@ -132,7 +132,7 @@ You may want to customize some of the variables in the script to suit your needs
 | `$folder` | The directory that the script watches for new files. It's set to the directory where the script itself is located. | `Split-Path $script:MyInvocation.MyCommand.Path` |
 | `$filter` | The type of files the script watches for. Set this to the file extension you want to monitor. | `'*.Mov'` |
 | `$outputFolder` | The directory where converted files are saved. Replace `'C:\HapAlpha\'` with the path to your desired output directory. The specified output directory should already exist. | `'C:\HapAlpha\'` |
-| `$hapFormat` | The format of hap files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)| `'1'` |
+| `$hapFormat` | The hap codec your files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)| `'1'` |
 
 For example, if you want the script to watch a directory at `D:\MyVideos` and save converted videos to `D:\MyConvertedVideos`, you would set `$folder = 'D:\MyVideos'` and `$outputFolder = 'D:\MyConvertedVideos\'`.
 
