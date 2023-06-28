@@ -13,7 +13,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
 
 	$folder =  Split-Path $script:MyInvocation.MyCommand.Path
 	Write-Host "Debug: Input folder will be `"$folder`""
-	$filter = '*.Mov'            # The type of files you want to watch
+	$filter = '*.mov'            # The type of files you want to watch
 
     # Create a FileSystemWatcher
     $fsw = New-Object IO.FileSystemWatcher $folder, $filter -Property @{
