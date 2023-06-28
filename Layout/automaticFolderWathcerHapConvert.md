@@ -52,18 +52,17 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
 		Write-Host "Debug: Output file will be `"$outputFile`""
 
 		if ($inputFileName -match 'hap1') {
-            $hapFormat = '1'
-        }
-        elseif ($inputFileName -match 'hap2') {
-            $hapFormat = '2'
-        }
-        elseif ($inputFileName -match 'hap3') {
-            $hapFormat = '3'
-        }
-        else {
-            Write-Host "Input filename does not contain 'hap1', 'hap2', or 'hap3'. Using default format."
-           
-        }
+            		$hapFormat = '1'
+        	}
+        	elseif ($inputFileName -match 'hap2') {
+            		$hapFormat = '2'
+        	}
+        	elseif ($inputFileName -match 'hap3') {
+            		$hapFormat = '3'
+        	}
+        	else {
+            		Write-Host "Input filename does not contain 'hap1', 'hap2', or 'hap3'. Using default format."
+        	}
 
 		# Execute the command
 		
@@ -147,6 +146,8 @@ You may want to customize some of the variables in the script to suit your needs
 | `$filter` | The type of files the script watches for. Set this to the file extension you want to monitor. | `'*.mov'` |
 | `$outFolder` | The directory where converted files are saved. Replace `'C:\Hap\'` with the path to your desired output directory. The specified output directory should already exist. | `'C:\Hap\'` |
 | `$hapFormat` | The hap codec your files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)| `'1'` |
+
+The output format ($hapFormat) can also be changed based on the input filename. If it contains the string 'hap1', 'hap2', or 'hap3' the according format is used. If there's non of them in the filename, the default value set to `$hapFormat` is used.
 
 For example, if you want the script to watch a directory at `D:\ProRes` and save converted movies in hapalpha to `D:\Hap`, you would set `$folder = 'D:\ProRes'`, `$outFolder = 'D:\Hap\'` and `$hapFormat` to `2`.
 
