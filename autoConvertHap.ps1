@@ -41,7 +41,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
-		$outFolder = 'C:\HapAlpha\'
+		$outFolder = 'C:\Hap\'
 		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
 		$hapFormat = '1'
 
