@@ -145,9 +145,9 @@ You may want to customize some of the variables in the script to suit your needs
 | `$folder` | The directory that the script watches for new files. It's set to the directory where the script itself is located. | `Split-Path $script:MyInvocation.MyCommand.Path` |
 | `$filter` | The type of files the script watches for. Set this to the file extension you want to monitor. | `'*.mov'` |
 | `$outFolder` | The directory where converted files are saved. Replace `'C:\Hap\'` with the path to your desired output directory. The specified output directory should already exist. | `'C:\Hap\'` |
-| `$hapFormat` | The hap codec your files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)| `'1'` |
+| `$hapFormat` | The hap codec your files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q). The output format `$hapFormat` can also be set based on the input filename. If it contains the string 'hap1', 'hap2', or 'hap3' the according format is used. If there's no selector in the filename, the default value set to `$hapFormat` is used.| `'1'` |
 
-The output format ($hapFormat) can also be changed based on the input filename. If it contains the string 'hap1', 'hap2', or 'hap3' the according format is used. If there's non of them in the filename, the default value set to `$hapFormat` is used.
+
 
 For example, if you want the script to watch a directory at `D:\ProRes` and save converted movies in hapalpha to `D:\Hap`, you would set `$folder = 'D:\ProRes'`, `$outFolder = 'D:\Hap\'` and `$hapFormat` to `2`.
 
