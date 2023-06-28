@@ -41,7 +41,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
-		
+		$outFolder = 'C:\HapAlpha\'
 		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
 		$hapFormat = '1'
 
@@ -54,17 +54,18 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
 		
 		   switch($hapFormat) {
             '1' { 
-				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hap.mov"
+				
+				$outputFile = $outFolder + $inputFileName + "_hap.mov"
 
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap `"$outputFile`"" -NoNewWindow -Wait
             }
             '2' {
-				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hapalpha.mov"
+				$outputFile = $outFolder + $inputFileName + "_hapalpha.mov"
 
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_alpha `"$outputFile`"" -NoNewWindow -Wait
             }
             '3' {
-				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hap.mov"
+				$outputFile = $outFolder + $inputFileName + "_hap.mov"
 
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_q `"$outputFile`"" -NoNewWindow -Wait
             }
