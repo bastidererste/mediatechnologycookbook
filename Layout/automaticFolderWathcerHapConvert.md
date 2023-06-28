@@ -42,7 +42,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
-		$outFolder = 'C:\HapAlpha\'
+		$outFolder = 'C:\Hap\'
 		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
 		$hapFormat = '1'
 
@@ -120,6 +120,7 @@ This PowerShell script watches a specific folder for newly created files with th
 2. Open PowerShell. The script will automatically run with administrator privileges if needed, prompting User Account Control (UAC) to request user confirmation.
 3. Run the script by typing `.\YourScriptName.ps1`, replacing "YourScriptName" with the name you saved your script as OR right click run as powershell script
 4. The script will watch the directory where the script itself is located.
+5. The default output fodler is 'C:\Hap'
 
 ## Configuration
 
