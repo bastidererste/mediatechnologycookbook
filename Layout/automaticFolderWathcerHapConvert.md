@@ -44,14 +44,37 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
-		$outputFile = "C:\HapAlpha\" + $inputFileName + "_hapalpha.mov"
+		
+		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
+		$hapFormat = '1'
 
 
 		# Add debug line
 		Write-Host "Debug: Output file will be `"$outputFile`""
 
+
 		# Execute the command
-		Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_alpha `"$outputFile`"" -NoNewWindow -Wait
+		
+		   switch($hapFormat) {
+            '1' { 
+				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hap.mov"
+
+                Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap `"$outputFile`"" -NoNewWindow -Wait
+            }
+            '2' {
+				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hapalpha.mov"
+
+                Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_alpha `"$outputFile`"" -NoNewWindow -Wait
+            }
+            '3' {
+				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hap.mov"
+
+                Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_q `"$outputFile`"" -NoNewWindow -Wait
+            }
+            Default {
+                Write-Host "Invalid Format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)"
+            }
+        }
     }
 
     # Wait for events
@@ -109,6 +132,7 @@ You may want to customize some of the variables in the script to suit your needs
 | `$folder` | The directory that the script watches for new files. It's set to the directory where the script itself is located. | `Split-Path $script:MyInvocation.MyCommand.Path` |
 | `$filter` | The type of files the script watches for. Set this to the file extension you want to monitor. | `'*.Mov'` |
 | `$outputFolder` | The directory where converted files are saved. Replace `'C:\HapAlpha\'` with the path to your desired output directory. The specified output directory should already exist. | `'C:\HapAlpha\'` |
+| `$hapFormat` | The format of hap files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)| `'1'` |
 
 For example, if you want the script to watch a directory at `D:\MyVideos` and save converted videos to `D:\MyConvertedVideos`, you would set `$folder = 'D:\MyVideos'` and `$outputFolder = 'D:\MyConvertedVideos\'`.
 
