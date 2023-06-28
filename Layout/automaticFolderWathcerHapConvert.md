@@ -1,5 +1,5 @@
 
-# PowerShell Script for Watching Folder and Converting MOV files
+# PowerShell Script for Watching Folder and Converting MOV files to Hap
 ```Powershell
 # Get the ID and security principal of the current user account
 $myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
