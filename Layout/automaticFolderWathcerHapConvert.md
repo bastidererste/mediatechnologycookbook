@@ -1,8 +1,6 @@
 
 # PowerShell Script for Watching Folder and Converting MOV files
 ```Powershell
-
-
 # Get the ID and security principal of the current user account
 $myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
 $myWindowsPrincipal = new-object System.Security.Principal.WindowsPrincipal($myWindowsID)
@@ -44,7 +42,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
-		
+		$outFolder = 'C:\HapAlpha\'
 		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
 		$hapFormat = '1'
 
@@ -57,17 +55,18 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
 		
 		   switch($hapFormat) {
             '1' { 
-				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hap.mov"
+				
+				$outputFile = $outFolder + $inputFileName + "_hap.mov"
 
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap `"$outputFile`"" -NoNewWindow -Wait
             }
             '2' {
-				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hapalpha.mov"
+				$outputFile = $outFolder + $inputFileName + "_hapalpha.mov"
 
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_alpha `"$outputFile`"" -NoNewWindow -Wait
             }
             '3' {
-				$outputFile = "C:\HapAlpha\" + $inputFileName + "_hap.mov"
+				$outputFile = $outFolder + $inputFileName + "_hap.mov"
 
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_q `"$outputFile`"" -NoNewWindow -Wait
             }
@@ -106,7 +105,6 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     exit
 }
 
-
 ```
 
 This PowerShell script watches a specific folder for newly created files with the ".Mov" extension. Once a new MOV file is detected, it uses `ffmpeg` to convert the file into the HAP format with alpha channel. The converted file is saved to a specified output directory.
@@ -131,10 +129,10 @@ You may want to customize some of the variables in the script to suit your needs
 | --- | --- | --- |
 | `$folder` | The directory that the script watches for new files. It's set to the directory where the script itself is located. | `Split-Path $script:MyInvocation.MyCommand.Path` |
 | `$filter` | The type of files the script watches for. Set this to the file extension you want to monitor. | `'*.Mov'` |
-| `$outputFolder` | The directory where converted files are saved. Replace `'C:\HapAlpha\'` with the path to your desired output directory. The specified output directory should already exist. | `'C:\HapAlpha\'` |
+| `$outFolder` | The directory where converted files are saved. Replace `'C:\HapAlpha\'` with the path to your desired output directory. The specified output directory should already exist. | `'C:\HapAlpha\'` |
 | `$hapFormat` | The hap codec your files are converted to. Replace `'1'` with the format. Coose 1 (hap), 2 (hap_alpha) or 3 (hap_q)| `'1'` |
 
-For example, if you want the script to watch a directory at `D:\MyVideos` and save converted videos to `D:\MyConvertedVideos`, you would set `$folder = 'D:\MyVideos'` and `$outputFolder = 'D:\MyConvertedVideos\'`.
+For example, if you want the script to watch a directory at `D:\MyVideos` and save converted videos to `D:\MyConvertedVideos`, you would set `$folder = 'D:\MyVideos'` and `$outFolder = 'D:\MyConvertedVideos\'`.
 
 ## Notes
 
