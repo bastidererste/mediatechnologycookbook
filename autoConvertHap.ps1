@@ -13,7 +13,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
 
 	$folder =  Split-Path $script:MyInvocation.MyCommand.Path
 	Write-Host "Debug: Input folder will be `"$folder`""
-	$filter = '*.mov'            # The type of files you want to watch
+	$filter = '*.Mov'            # The type of files you want to watch
 
     # Create a FileSystemWatcher
     $fsw = New-Object IO.FileSystemWatcher $folder, $filter -Property @{
@@ -42,13 +42,25 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
 		$outFolder = 'C:\Hap\'
-		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
-		$hapFormat = '1'
-
+		# Define the default hap format: 1 hap; 2 hap_alpha; 3 hap_q
+		$hapFormat = '2'
 
 		# Add debug line
 		Write-Host "Debug: Output file will be `"$outputFile`""
 
+		if ($inputFileName -match 'hap1') {
+            $hapFormat = '1'
+        }
+        elseif ($inputFileName -match 'hap2') {
+            $hapFormat = '2'
+        }
+        elseif ($inputFileName -match 'hap3') {
+            $hapFormat = '3'
+        }
+        else {
+            Write-Host "Input filename does not contain 'hap1', 'hap2', or 'hap3'. Using default format."
+           
+        }
 
 		# Execute the command
 		
