@@ -1,6 +1,8 @@
 
 # PowerShell Script for Watching Folder and Converting MOV files to Hap
 ```Powershell
+
+
 # Get the ID and security principal of the current user account
 $myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
 $myWindowsPrincipal = new-object System.Security.Principal.WindowsPrincipal($myWindowsID)
@@ -14,7 +16,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
 
 	$folder =  Split-Path $script:MyInvocation.MyCommand.Path
 	Write-Host "Debug: Input folder will be `"$folder`""
-	$filter = '*.mov'            # The type of files you want to watch
+	$filter = '*.Mov'            # The type of files you want to watch
 
     # Create a FileSystemWatcher
     $fsw = New-Object IO.FileSystemWatcher $folder, $filter -Property @{
@@ -43,28 +45,43 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
         # Define the output filename
 		$inputFileName = [IO.Path]::GetFileNameWithoutExtension($path)
 		$outFolder = 'C:\Hap\'
-		# Define the hap format: 1 hap; 2 hap_alpha; 3 hap_q
-		$hapFormat = '1'
-
+		# Define the default hap format: 1 hap; 2 hap_alpha; 3 hap_q
+		$hapFormat = '2'
 
 		# Add debug line
 		Write-Host "Debug: Output file will be `"$outputFile`""
 
+		if ($inputFileName -match 'hap1') {
+            $hapFormat = '1'
+        }
+        elseif ($inputFileName -match 'hap2') {
+            $hapFormat = '2'
+        }
+        elseif ($inputFileName -match 'hap3') {
+            $hapFormat = '3'
+        }
+        else {
+            Write-Host "Input filename does not contain 'hap1', 'hap2', or 'hap3'. Using default format."
+           
+        }
 
 		# Execute the command
 		
 		   switch($hapFormat) {
             '1' { 
 				
-		$outputFile = $outFolder + $inputFileName + "_hap.mov"
+				$outputFile = $outFolder + $inputFileName + "_hap.mov"
+
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap `"$outputFile`"" -NoNewWindow -Wait
             }
             '2' {
-		$outputFile = $outFolder + $inputFileName + "_hapalpha.mov"
+				$outputFile = $outFolder + $inputFileName + "_hapalpha.mov"
+
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_alpha `"$outputFile`"" -NoNewWindow -Wait
             }
             '3' {
-		$outputFile = $outFolder + $inputFileName + "_hapq.mov"
+				$outputFile = $outFolder + $inputFileName + "_hapq.mov"
+
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_q `"$outputFile`"" -NoNewWindow -Wait
             }
             Default {
@@ -101,6 +118,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     # Exit from the current, unelevated, process
     exit
 }
+
 
 ```
 
