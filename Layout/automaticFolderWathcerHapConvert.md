@@ -64,7 +64,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_alpha `"$outputFile`"" -NoNewWindow -Wait
             }
             '3' {
-		$outputFile = $outFolder + $inputFileName + "_hap.mov"
+		$outputFile = $outFolder + $inputFileName + "_hapq.mov"
                 Start-Process ffmpeg -ArgumentList "-v verbose -y -i `"$path`" -c:v hap -format hap_q `"$outputFile`"" -NoNewWindow -Wait
             }
             Default {
