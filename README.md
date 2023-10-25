@@ -14,6 +14,7 @@ This extensive experience inspired me to curate the "Media Technology Cookbook".
 ### Contents
 
 * [ABBRobotToVentuz](https://github.com/bastidererste/mediatechnologycookbook/blob/master/ABBRobotToVentuz)
+* [C#ControlledProbability](https://github.com/bastidererste/mediatechnologycookbook/blob/master/probability_c%23)
 * [C#LindyMatrixCGIPostRequest.cs](https://github.com/bastidererste/mediatechnologycookbook/blob/master/C%23LindyMatrixCGIPostRequest.cs)
 * [C#OSCAudioMasterControl.cs](https://github.com/bastidererste/mediatechnologycookbook/blob/master/C%23OSCAudioMasterControl.cs)
 * [C#OSCDispatcher.cs](https://github.com/bastidererste/mediatechnologycookbook/blob/master/C%23OSCDispatcher.cs)
@@ -54,7 +55,6 @@ This extensive experience inspired me to curate the "Media Technology Cookbook".
 * [nmapScanPorts](https://github.com/bastidererste/mediatechnologycookbook/blob/master/nmapScanPorts)
 * [ofxOSCReceiverThread.h](https://github.com/bastidererste/mediatechnologycookbook/blob/master/ofxOSCReceiverThread.h)
 * [ofxSendOscMessage](https://github.com/bastidererste/mediatechnologycookbook/blob/master/ofxSendOscMessage)
-* [probability_c#](https://github.com/bastidererste/mediatechnologycookbook/blob/master/probability_c#)
 * [processing3UDPclient.pde](https://github.com/bastidererste/mediatechnologycookbook/blob/master/processing3UDPclient.pde)
 
 
