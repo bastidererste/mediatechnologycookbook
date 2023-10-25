@@ -5,6 +5,8 @@
 
 A collection of code snippets, algorithms and other tidbits from ~20 years of coding and tech-support in and around the media technology industry.
 
+Hi! I'm Sebastian Spiegl, a creative-tech tech founder who's spent over 20 years in the intersections of computer graphics, display technology, software development, and color science. My journey has led me through the nuances of protocol implementation, navigating from established industry standards like CAN bus, modbus, protobuf, over domain specific protocolls like byteflight, CAN2.0 and the like to the dynamic realms of OSC, ArtNet, DMX, and UDP. This extensive experience inspired me to curate the "Media Technology Cookbook". Within its pages, I've compiled a range of code snippets, algorithms, and practical insights. It's a reflection of two decades spent coding and troubleshooting in and around the media technology industry, intended to be a helpful resource for peers and newcomers alike.
+
 ### Contents
 
 * [ABBRobotToVentuz](https://github.com/bastidererste/mediatechnologycookbook/blob/master/ABBRobotToVentuz)
