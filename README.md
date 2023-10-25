@@ -33,6 +33,7 @@ A collection of code snippets, algorithms and other tidbits from ~20 years of co
 * [Python3TCPclient.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3TCPclient.py)
 * [Python3UDPClient.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3UDPClient.py)
 * [Python3joystickbutton.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3joystickbutton.py)
+* [Python3mqtt_to_osc.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3mqtt_to_osc.py)
 * [Python3openCVCameraCalibration.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3openCVCameraCalibration.py)
 * [Python3oscclient.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3oscclient.py)
 * [VLC_2.0.8_exhibition_proof.md](https://github.com/bastidererste/mediatechnologycookbook/blob/master/VLC_2.0.8_exhibition_proof.md)
