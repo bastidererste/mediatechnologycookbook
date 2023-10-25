@@ -57,6 +57,11 @@ A collection of code snippets, algorithms and other tidbits from ~20 years of co
 ## Authors
 
 Sebastian Spiegl
+Creative-tech founder with more than 20 years of experience in computer graphics, display technology, software development and color science.
+
+Content creation pipeline digitalization expert with a proven track record in the aviation and military industry. 
+
+Protocol implementation and reshaping expert: from industry to event and broadcast standards, CAN bus, modbus, rs485,… to OSC, ArtNet, DMX, UDP,… and back.
 
 ## Version History
 
