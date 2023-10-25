@@ -5,17 +5,6 @@
 
 A collection of code snippets, algorithms and other tidbits from ~20 years of coding and tech-support in and around the media technology industry.
 
-## Description
-
-An in-depth paragraph about your project and overview of use.
-
-## Getting Started
-
-### Dependencies
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
 ### Contents
 
 * [ABBRobotToVentuz](https://github.com/bastidererste/mediatechnologycookbook/blob/master/ABBRobotToVentuz)
@@ -36,6 +25,7 @@ An in-depth paragraph about your project and overview of use.
 * [CppCalibrateInterpolate.cpp](https://github.com/bastidererste/mediatechnologycookbook/blob/master/CppCalibrateInterpolate.cpp)
 * [CppUDPclient.cpp](https://github.com/bastidererste/mediatechnologycookbook/blob/master/CppUDPclient.cpp)
 * [Python2.7UDPClient.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python2.7UDPClient.py)
+* [Python3AI_SrtToSrt_ContextBasedTranslation.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3AI_SrtToSrt_ContextBasedTranslation.py)
 * [Python3CalibInterpolate.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3CalibInterpolate.py)
 * [Python3MODBUSfloat32FromBytes.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3MODBUSfloat32FromBytes.py)
 * [Python3MODBUStoOSC.py](https://github.com/bastidererste/mediatechnologycookbook/blob/master/Python3MODBUStoOSC.py)
@@ -60,31 +50,14 @@ An in-depth paragraph about your project and overview of use.
 * [probability_c#](https://github.com/bastidererste/mediatechnologycookbook/blob/master/probability_c#)
 * [processing3UDPclient.pde](https://github.com/bastidererste/mediatechnologycookbook/blob/master/processing3UDPclient.pde)
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
 
 ## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
 ## Authors
 
+Sebastian Spiegl
 
 ## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
 
 ## License
 
