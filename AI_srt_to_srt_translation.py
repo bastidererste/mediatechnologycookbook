@@ -9,7 +9,7 @@ def translate_german_to_english(german_text):
     # Using the completion endpoint to translate
     response = openai.Completion.create(
         engine="text-davinci-003",
-        prompt=f"Translate the following German text to English, context is automotive industry: '{german_text}'",
+        prompt=f"Translate the following German text to English, context is software development: '{german_text}'",
         max_tokens=150  # You can adjust this based on the length you expect
     )
 
