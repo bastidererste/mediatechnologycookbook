@@ -1,7 +1,17 @@
-## Description of Bash Script
+## socat packet forwarding
 
 This script is a Bash shell script used for creating a continuous UDP forwarding mechanism. The components of the script are as follows:
 
+
+```
+#!/bin/bash
+
+while true; do
+    socat UDP-RECV:4001 UDP-SENDTO:192.168.178.56:4001
+    echo "socat exited with status $?. Restarting..." >&2
+    sleep 1  # Wait for 1 second before restarting
+done
+```
 1. **Shebang (`#!/bin/bash`):** This line indicates that the script should be executed using the Bash shell.
 
 2. **Infinite Loop (`while true; do ... done`):** 
