@@ -36,7 +36,13 @@ done
 
 To use this script:
 
-Copy the script into a file, say socat_loop.sh.
-Give it execute permission using the command chmod +x socat_loop.sh.
-Run the script with ./socat_loop.sh.
+-Copy the script into a file, say socat_loop.sh.
+-Give it execute permission
 
+```
+$ chmod +x socat_loop.sh.
+```
+-Run the script 
+```
+$ ./socat_loop.sh.
+```
