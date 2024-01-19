@@ -36,8 +36,9 @@ done
 
 To use this script:
 
--Copy the script into a file, say socat_loop.sh.
--Give it execute permission
+Copy the script into a file, say socat_loop.sh.
+
+Give it execute permission
 
 ```
 $ chmod +x socat_loop.sh.
